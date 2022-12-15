@@ -1,0 +1,555 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Events attributes and data - Sylvia book</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Guide to building CosmWasm smart contracts">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Getting started</li><li class="chapter-item expanded "><a href="../setting-up-env.html"><strong aria-hidden="true">1.</strong> Setting up the environment</a></li><li class="chapter-item expanded "><a href="../wasmd-quick-start.html"><strong aria-hidden="true">2.</strong> Quick start with wasmd</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wasmd-quick-start/testnet.html"><strong aria-hidden="true">2.1.</strong> Testnet setup</a></li><li class="chapter-item expanded "><a href="../wasmd-quick-start/preparing-account.html"><strong aria-hidden="true">2.2.</strong> Preparing account</a></li><li class="chapter-item expanded "><a href="../wasmd-quick-start/testnet-interaction.html"><strong aria-hidden="true">2.3.</strong> Interaction with testnet</a></li><li class="chapter-item expanded "><a href="../basics/building-contract.html"><strong aria-hidden="true">2.4.</strong> Building the contract</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Smart contracts</li><li class="chapter-item expanded "><a href="../basics.html"><strong aria-hidden="true">3.</strong> Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basics/create-project.html"><strong aria-hidden="true">3.1.</strong> Create a Rust project</a></li><li class="chapter-item expanded "><a href="../basics/entry-points.html"><strong aria-hidden="true">3.2.</strong> Entry points</a></li><li class="chapter-item expanded "><a href="../basics/first-messages.html"><strong aria-hidden="true">3.3.</strong> Generating first messages</a></li><li class="chapter-item expanded "><a href="../basics/state.html"><strong aria-hidden="true">3.4.</strong> Contract state</a></li><li class="chapter-item expanded "><a href="../basics/query.html"><strong aria-hidden="true">3.5.</strong> Creating a query</a></li><li class="chapter-item expanded "><a href="../basics/query-testing.html"><strong aria-hidden="true">3.6.</strong> Testing a query</a></li><li class="chapter-item expanded "><a href="../basics/multitest-intro.html"><strong aria-hidden="true">3.7.</strong> Introducing multitest</a></li><li class="chapter-item expanded "><a href="../basics/execute.html"><strong aria-hidden="true">3.8.</strong> Execution messsages</a></li><li class="chapter-item expanded "><a href="../basics/events.html" class="active"><strong aria-hidden="true">3.9.</strong> Events attributes and data</a></li><li class="chapter-item expanded "><a href="../basics/funds.html"><strong aria-hidden="true">3.10.</strong> Dealing with funds</a></li><li class="chapter-item expanded "><a href="../basics/good-practices.html"><strong aria-hidden="true">3.11.</strong> Good practices</a></li><li class="chapter-item expanded "><a href="../basics/fp-types.html"><strong aria-hidden="true">3.12.</strong> Floating point types</a></li><li class="chapter-item expanded "><a href="../basics/reusability.html"><strong aria-hidden="true">3.13.</strong> Reusability</a></li></ol></li><li class="chapter-item expanded "><a href="../actor-model.html"><strong aria-hidden="true">4.</strong> The Actor Model</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../actor-model/idea.html"><strong aria-hidden="true">4.1.</strong> The idea</a></li><li class="chapter-item expanded "><a href="../actor-model/actors-in-blockchain.html"><strong aria-hidden="true">4.2.</strong> Actors in the blockchain</a></li><li class="chapter-item expanded "><a href="../actor-model/contract-as-actor.html"><strong aria-hidden="true">4.3.</strong> Contract as an actor</a></li></ol></li><li class="chapter-item expanded "><a href="../impressum.html">Legal Information</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Sylvia book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="events-attributes-and-data"><a class="header" href="#events-attributes-and-data">Events attributes and data</a></h1>
+<p>The only way our contract can communicate to the world, for now, is by queries. Smart contracts are
+passive - they cannot invoke any action by themselves. They can do it only as a reaction to a call.
+But if you tried playing with wasmd, you know that execution on the blockchain can return some
+metadata.</p>
+<p>There are two things the contract can return to the caller: events and data. Events are something
+produced by almost every real-life smart contract. In contrast, data is rarely used, designed for
+contract-to-contract communication.</p>
+<h2 id="returning-events"><a class="header" href="#returning-events">Returning events</a></h2>
+<p>As an example, we would add an event  admin_added emitted by our contract on the execution of
+add_member:</p>
+<pre><code class="language-rust noplayground">use crate::error::ContractError;
+use crate::responses::AdminListResp;
+use cosmwasm_std::{
+    Addr, Deps, DepsMut, Empty, Env, Event, MessageInfo, Order, Response, StdResult,
+};
+use cw_storage_plus::Map;
+use schemars;
+use sylvia::contract;
+
+<span class="boring">pub struct AdminContract&lt;'a&gt; {
+</span><span class="boring">   pub(crate) admins: Map&lt;'a, &amp;'a Addr, Empty&gt;,
+</span><span class="boring">}
+</span><span class="boring">
+</span>#[contract]
+impl AdminContract&lt;'_&gt; {
+<span class="boring">   pub const fn new() -&gt; Self {
+</span><span class="boring">       Self {
+</span><span class="boring">           admins: Map::new(&quot;admins&quot;),
+</span><span class="boring">       }
+</span><span class="boring">   }
+</span><span class="boring">
+</span><span class="boring">   #[msg(instantiate)]
+</span><span class="boring">   pub fn instantiate(
+</span><span class="boring">       &amp;self,
+</span><span class="boring">       ctx: (DepsMut, Env, MessageInfo),
+</span><span class="boring">       admins: Vec&lt;String&gt;,
+</span><span class="boring">   ) -&gt; Result&lt;Response, ContractError&gt; {
+</span><span class="boring">       let (deps, _, _) = ctx;
+</span><span class="boring">
+</span><span class="boring">       for admin in admins {
+</span><span class="boring">           let admin = deps.api.addr_validate(&amp;admin)?;
+</span><span class="boring">           self.admins.save(deps.storage, &amp;admin, &amp;Empty {})?;
+</span><span class="boring">       }
+</span><span class="boring">
+</span><span class="boring">       Ok(Response::new())
+</span><span class="boring">   }
+</span><span class="boring">
+</span><span class="boring">   #[msg(query)]
+</span><span class="boring">   pub fn admin_list(&amp;self, ctx: (Deps, Env)) -&gt; StdResult&lt;AdminListResp&gt; {
+</span><span class="boring">       let (deps, _) = ctx;
+</span><span class="boring">
+</span><span class="boring">       let admins: Result&lt;_, _&gt; = self
+</span><span class="boring">           .admins
+</span><span class="boring">           .keys(deps.storage, None, None, Order::Ascending)
+</span><span class="boring">           .map(|addr| addr.map(String::from))
+</span><span class="boring">           .collect();
+</span><span class="boring">
+</span><span class="boring">       Ok(AdminListResp { admins: admins? })
+</span><span class="boring">   }
+</span><span class="boring">
+</span>    ...
+
+    #[msg(exec)]
+    pub fn add_member(
+        &amp;self,
+        ctx: (DepsMut, Env, MessageInfo),
+        admin: String,
+    ) -&gt; Result&lt;Response, ContractError&gt; {
+        let (deps, _, info) = ctx;
+
+        if !self.admins.has(deps.storage, &amp;info.sender) {
+            return Err(ContractError::Unauthorized {
+                sender: info.sender,
+            });
+        }
+        let admin = deps.api.addr_validate(&amp;admin)?;
+        self.admins.save(deps.storage, &amp;admin, &amp;Empty {})?;
+
+        let resp = Response::new()
+            .add_attribute(&quot;action&quot;, &quot;add_member&quot;)
+            .add_event(Event::new(&quot;admin_added&quot;).add_attribute(&quot;addr&quot;, admin));
+        Ok(resp)
+    }
+}
+<span class="boring">
+</span><span class="boring">#[cfg(test)]
+</span><span class="boring">mod tests {
+</span><span class="boring">   use crate::entry_points::{execute, instantiate, query};
+</span><span class="boring">   use cosmwasm_std::from_binary;
+</span><span class="boring">   use cosmwasm_std::testing::{mock_dependencies, mock_env, mock_info};
+</span><span class="boring">
+</span><span class="boring">   use super::*;
+</span><span class="boring">
+</span><span class="boring">   #[test]
+</span><span class="boring">   fn admin_list_query() {
+</span><span class="boring">       let mut deps = mock_dependencies();
+</span><span class="boring">       let env = mock_env();
+</span><span class="boring">
+</span><span class="boring">       instantiate(
+</span><span class="boring">           deps.as_mut(),
+</span><span class="boring">           env.clone(),
+</span><span class="boring">           mock_info(&quot;sender&quot;, &amp;[]),
+</span><span class="boring">           InstantiateMsg {
+</span><span class="boring">               admins: vec![&quot;admin1&quot;.to_owned(), &quot;admin2&quot;.to_owned()],
+</span><span class="boring">           },
+</span><span class="boring">       )
+</span><span class="boring">       .unwrap();
+</span><span class="boring">
+</span><span class="boring">       let msg = QueryMsg::AdminList {};
+</span><span class="boring">       let resp = query(deps.as_ref(), env, ContractQueryMsg::AdminContract(msg)).unwrap();
+</span><span class="boring">       let resp: AdminListResp = from_binary(&amp;resp).unwrap();
+</span><span class="boring">       assert_eq!(
+</span><span class="boring">           resp,
+</span><span class="boring">           AdminListResp {
+</span><span class="boring">               admins: vec![&quot;admin1&quot;.to_owned(), &quot;admin2&quot;.to_owned()],
+</span><span class="boring">           }
+</span><span class="boring">       );
+</span><span class="boring">   }
+</span><span class="boring">
+</span><span class="boring">   #[test]
+</span><span class="boring">   fn add_member() {
+</span><span class="boring">       let mut deps = mock_dependencies();
+</span><span class="boring">       let env = mock_env();
+</span><span class="boring">
+</span><span class="boring">       instantiate(
+</span><span class="boring">           deps.as_mut(),
+</span><span class="boring">           env.clone(),
+</span><span class="boring">           mock_info(&quot;sender&quot;, &amp;[]),
+</span><span class="boring">           InstantiateMsg {
+</span><span class="boring">               admins: vec![&quot;admin1&quot;.to_owned(), &quot;admin2&quot;.to_owned()],
+</span><span class="boring">           },
+</span><span class="boring">       )
+</span><span class="boring">       .unwrap();
+</span><span class="boring">
+</span><span class="boring">       let info = mock_info(&quot;admin1&quot;, &amp;[]);
+</span><span class="boring">       let msg = ExecMsg::AddMember {
+</span><span class="boring">           admin: &quot;admin3&quot;.to_owned(),
+</span><span class="boring">       };
+</span><span class="boring">       execute(
+</span><span class="boring">           deps.as_mut(),
+</span><span class="boring">           env.clone(),
+</span><span class="boring">           info,
+</span><span class="boring">           ContractExecMsg::AdminContract(msg),
+</span><span class="boring">       )
+</span><span class="boring">       .unwrap();
+</span><span class="boring">
+</span><span class="boring">       let msg = QueryMsg::AdminList {};
+</span><span class="boring">       let resp = query(deps.as_ref(), env, ContractQueryMsg::AdminContract(msg)).unwrap();
+</span><span class="boring">       let resp: AdminListResp = from_binary(&amp;resp).unwrap();
+</span><span class="boring">       assert_eq!(
+</span><span class="boring">           resp,
+</span><span class="boring">           AdminListResp {
+</span><span class="boring">               admins: vec![
+</span><span class="boring">                   &quot;admin1&quot;.to_owned(),
+</span><span class="boring">                   &quot;admin2&quot;.to_owned(),
+</span><span class="boring">                   &quot;admin3&quot;.to_owned()
+</span><span class="boring">               ],
+</span><span class="boring">           }
+</span><span class="boring">       );
+</span><span class="boring">   }
+</span><span class="boring">}
+</span></code></pre>
+<p>An event is built from two things: an event type provided in the
+<a href="https://docs.rs/cosmwasm-std/1.1.0/cosmwasm_std/struct.Event.html#method.new"><code>new</code></a> function and
+attributes. Attributes are added to an event with the
+<a href="https://docs.rs/cosmwasm-std/1.1.0/cosmwasm_std/struct.Event.html#method.add_attributes"><code>add_attributes</code></a>
+or the <a href="https://docs.rs/cosmwasm-std/1.1.0/cosmwasm_std/struct.Event.html#method.add_attribute"><code>add_attribute</code></a>
+call. Attributes are key-value pairs. Because an event cannot contain any list, to achieve reporting
+multiple similar actions taking place, we need to emit multiple small events instead of a collective
+one.</p>
+<p>Events are emitted by adding them to the response with
+<a href="https://docs.rs/cosmwasm-std/1.1.0/cosmwasm_std/struct.Response.html#method.add_event"><code>add_event</code></a>
+or <a href="https://docs.rs/cosmwasm-std/1.1.0/cosmwasm_std/struct.Response.html#method.add_events"><code>add_events</code></a>
+call. Additionally, there is a possibility to add attributes directly to the response. It is just
+sugar. By default, every execution emits a standard &quot;wasm&quot; event. Adding attributes to the result
+adds them to the default event.</p>
+<p>We can check if events are properly emitted by contract. It is not always done, as it is much of
+boilerplate in test, but events are, generally, more like logs - not necessarily considered the main
+contract logic.</p>
+<p>Due to the extra event attribute being added by contract, let's add a new method to the proxy:</p>
+<pre><code class="language-rust noplayground">use cosmwasm_std::{Addr, StdResult};
+use cw_multi_test::{App, AppResponse, Executor};
+
+use crate::{
+    contract::{AdminContract, ExecMsg, InstantiateMsg, QueryMsg},
+    error::ContractError,
+    responses::AdminListResp,
+};
+
+<span class="boring">#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+</span><span class="boring">pub struct AdminContractCodeId(u64);
+</span><span class="boring">
+</span><span class="boring">impl AdminContractCodeId {
+</span><span class="boring">   pub fn store_code(app: &amp;mut App) -&gt; Self {
+</span><span class="boring">       let code_id = app.store_code(Box::new(AdminContract::new()));
+</span><span class="boring">       Self(code_id)
+</span><span class="boring">   }
+</span><span class="boring">
+</span><span class="boring">   #[track_caller]
+</span><span class="boring">   pub fn instantiate(
+</span><span class="boring">       self,
+</span><span class="boring">       app: &amp;mut App,
+</span><span class="boring">       sender: &amp;Addr,
+</span><span class="boring">       admins: Vec&lt;String&gt;,
+</span><span class="boring">       label: &amp;str,
+</span><span class="boring">       admin: Option&lt;String&gt;,
+</span><span class="boring">   ) -&gt; Result&lt;AdminContractProxy, ContractError&gt; {
+</span><span class="boring">       let msg = InstantiateMsg { admins };
+</span><span class="boring">
+</span><span class="boring">       app.instantiate_contract(self.0, sender.clone(), &amp;msg, &amp;[], label, admin)
+</span><span class="boring">           .map_err(|err| err.downcast().unwrap())
+</span><span class="boring">           .map(AdminContractProxy)
+</span><span class="boring">   }
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">#[derive(Debug)]
+</span><span class="boring">pub struct AdminContractProxy(Addr);
+</span><span class="boring">
+</span>impl AdminContractProxy {
+    pub fn addr(&amp;self) -&gt; &amp;Addr {
+        &amp;self.0
+    }
+<span class="boring">   #[track_caller]
+</span><span class="boring">   pub fn admin_list(&amp;self, app: &amp;App) -&gt; StdResult&lt;AdminListResp&gt; {
+</span><span class="boring">       let msg = QueryMsg::AdminList {};
+</span><span class="boring">
+</span><span class="boring">       app.wrap().query_wasm_smart(self.0.clone(), &amp;msg)
+</span><span class="boring">   }
+</span><span class="boring">
+</span><span class="boring">   #[track_caller]
+</span><span class="boring">   pub fn add_member(
+</span><span class="boring">       &amp;self,
+</span><span class="boring">       app: &amp;mut App,
+</span><span class="boring">       sender: &amp;Addr,
+</span><span class="boring">       admin: String,
+</span><span class="boring">   ) -&gt; Result&lt;AppResponse, ContractError&gt; {
+</span><span class="boring">       let msg = ExecMsg::AddMember { admin };
+</span><span class="boring">
+</span><span class="boring">       app.execute_contract(sender.clone(), self.0.clone(), &amp;msg, &amp;[])
+</span><span class="boring">           .map_err(|err| err.downcast().unwrap())
+</span><span class="boring">   }
+</span>}
+</code></pre>
+<p>This will return the address of the contract on a blockchain which is, by default, added to the
+events attribute and which we will need in our assertion. Now let's update our basic multitest
+checking if execution emits events:</p>
+<pre><code class="language-rust noplayground/If">use cosmwasm_std::{Addr, Event};
+use cw_multi_test::App;
+
+use crate::error::ContractError;
+use crate::{multitest::proxy::AdminContractCodeId, responses::AdminListResp};
+
+#[test]
+fn basic() {
+    let mut app = App::default();
+
+    let owner = Addr::unchecked(&quot;addr0001&quot;);
+    let admin1 = Addr::unchecked(&quot;admin1&quot;);
+    let admin2 = Addr::unchecked(&quot;admin2&quot;);
+    let admin3 = Addr::unchecked(&quot;admin3&quot;);
+
+    let code_id = AdminContractCodeId::store_code(&amp;mut app);
+
+    let contract = code_id
+        .instantiate(
+            &amp;mut app,
+            &amp;owner,
+            vec![admin1.to_string(), admin2.to_string()],
+            &quot;Cw20 contract&quot;,
+            None,
+        )
+        .unwrap();
+
+    let resp = contract.admin_list(&amp;app).unwrap();
+
+    assert_eq!(
+        resp,
+        AdminListResp {
+            admins: vec![admin1.to_string(), admin2.to_string()]
+        }
+    );
+
+    let resp = contract
+        .add_member(&amp;mut app, &amp;admin1, admin3.to_string())
+        .unwrap();
+
+    let wasm = resp.events.iter().find(|ev| ev.ty == &quot;wasm&quot;).unwrap();
+    assert_eq!(
+        wasm.attributes
+            .iter()
+            .find(|attr| attr.key == &quot;action&quot;)
+            .unwrap()
+            .value,
+        &quot;add_member&quot;
+    );
+
+    let admin_added: Vec&lt;_&gt; = resp
+        .events
+        .iter()
+        .filter(|ev| ev.ty == &quot;wasm-admin_added&quot;)
+        .collect();
+    assert_eq!(admin_added[0], &amp;Event::new(&quot;wasm-admin_added&quot;).add_attribute(&quot;_contract_addr&quot;, contract.addr()).add_attribute(&quot;addr&quot;, Addr::unchecked(&quot;admin3&quot;)));
+
+    let resp = contract.admin_list(&amp;app).unwrap();
+
+    assert_eq!(
+        resp,
+        AdminListResp {
+            admins: vec![admin1.to_string(), admin2.to_string(), admin3.to_string()]
+        }
+    );
+}
+<span class="boring">
+</span><span class="boring">#[test]
+</span><span class="boring">fn unathorized() {
+</span><span class="boring">   let mut app = App::default();
+</span><span class="boring">
+</span><span class="boring">   let owner = Addr::unchecked(&quot;addr0001&quot;);
+</span><span class="boring">   let admin1 = Addr::unchecked(&quot;admin1&quot;);
+</span><span class="boring">   let admin2 = Addr::unchecked(&quot;admin2&quot;);
+</span><span class="boring">   let admin3 = Addr::unchecked(&quot;admin3&quot;);
+</span><span class="boring">
+</span><span class="boring">   let code_id = AdminContractCodeId::store_code(&amp;mut app);
+</span><span class="boring">
+</span><span class="boring">   let contract = code_id
+</span><span class="boring">       .instantiate(
+</span><span class="boring">           &amp;mut app,
+</span><span class="boring">           &amp;owner,
+</span><span class="boring">           vec![admin1.to_string(), admin2.to_string()],
+</span><span class="boring">           &quot;Cw20 contract&quot;,
+</span><span class="boring">           None,
+</span><span class="boring">       )
+</span><span class="boring">       .unwrap();
+</span><span class="boring">
+</span><span class="boring">   let resp = contract.admin_list(&amp;app).unwrap();
+</span><span class="boring">
+</span><span class="boring">   assert_eq!(
+</span><span class="boring">       resp,
+</span><span class="boring">       AdminListResp {
+</span><span class="boring">           admins: vec![admin1.to_string(), admin2.to_string()]
+</span><span class="boring">       }
+</span><span class="boring">   );
+</span><span class="boring">
+</span><span class="boring">   let err = contract
+</span><span class="boring">       .add_member(&amp;mut app, &amp;admin3, admin3.to_string())
+</span><span class="boring">       .unwrap_err();
+</span><span class="boring">
+</span><span class="boring">   assert_eq!(err, ContractError::Unauthorized { sender: admin3 });
+</span><span class="boring">
+</span><span class="boring">   let resp = contract.admin_list(&amp;app).unwrap();
+</span><span class="boring">
+</span><span class="boring">   assert_eq!(
+</span><span class="boring">       resp,
+</span><span class="boring">       AdminListResp {
+</span><span class="boring">           admins: vec![admin1.to_string(), admin2.to_string()]
+</span><span class="boring">       }
+</span><span class="boring">   );
+</span><span class="boring">}
+</span></code></pre>
+<p>If you have prepared an Ok scenario test after the previous chapter, then you can update it as
+above. I have added the <code>add_member</code> call in the <code>basic</code> test and captured the response in the
+<code>resp</code> variable.</p>
+<p>As you can see, testing events on a simple test made it clunky. First of all, every string is
+heavily string-based - a lack of type control makes writing such tests difficult. Also, event types
+are prefixed with &quot;wasm-&quot; - it may not be a huge problem, but it doesn't clarify verification. But
+the problem is, how layered event structures are, which makes verifying them tricky. Also, the
+&quot;wasm&quot; event is particularly tricky, as it contains an implied attribute - <code>_contract_addr</code>
+containing an address called a contract. My general rule is - do not test emitted events unless
+some logic depends on them.</p>
+<h2 id="data"><a class="header" href="#data">Data</a></h2>
+<p>Besides events, any smart contract execution may produce a <code>data</code> object. In contrast to events,
+<code>data</code> can be structured. It makes it a way better choice to perform any communication logic to
+rely on it. On the other hand, it turns out it is very rarely helpful outside of contract-to-contract
+communication. Data is always only one single object on the response, which is set using the
+<a href="https://docs.rs/cosmwasm-std/1.1.0/cosmwasm_std/struct.Response.html#method.set_data"><code>set_data</code></a>
+function. Because of its low usefulness in a single contract environment, we will not spend time on
+it right now - an example of it will be covered later when contract-to-contract communication will
+be discussed. Until then, it is just helpful to know such an entity exists.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../basics/execute.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../basics/funds.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../basics/execute.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../basics/funds.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
